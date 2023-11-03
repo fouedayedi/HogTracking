@@ -6,11 +6,6 @@ from skimage.feature import hog
 from skimage import io, color
 from utile.visuHOG import visuHOG
 import pickle
-from sklearn.metrics import roc_curve, auc
-from skimage import feature
-from sklearn import svm
-
-
 
 
 
@@ -19,8 +14,6 @@ fname = "/home/foued/Desktop/SUPCOM/Tracking/HogTracking/data/test/13.png"
 ######################
 # Section 1 : Question 2, 3
 ######################
-
-""" 
 image = cv2.imread(fname)
 R, G, B = cv2.split(image)
 
@@ -48,33 +41,30 @@ A,M = maxnormgrad(magnitudes,angles)
 plt.imshow(M, cmap='gray')
 plt.colorbar()
 plt.title("Maximal Gradient Magnitude (M)")
-plt.show() """
+plt.show()
 
 ######################
 # Section 2: Questions 4
 ######################
-
-""" image = io.imread(fname)
+image = io.imread(fname)
 image_gray = color.rgb2gray(image) 
 
 # Compute HOG descriptors with 8*8 pixels_per_cell
-fd, hog_image = hog(image_gray, orientations=8, pixels_per_cell=(8, 8), cells_per_block=(1, 1), visualize=True) 
-
+fd, hog_image = hog(image_gray, orientations=9, pixels_per_cell=(8, 8),transform_sqrt=True, cells_per_block=(1, 1), visualize=True) 
+visuHOG(image,hog_image) 
 # Compute HOG descriptors with 2*2 cells_per_block
-fd, hog_image = hog(image_gray, orientations=8, pixels_per_cell=(8, 8), cells_per_block=(2, 2), visualize=True)
-
+fd, hog_image = hog(image_gray, orientations=9, pixels_per_cell=(8, 8),transform_sqrt=True, cells_per_block=(2, 2), visualize=True)
+visuHOG(image,hog_image) 
 
 # Compute HOG descriptors with decalage 
- fd, hog_image = hog(image_gray, orientations=8, pixels_per_cell=(2, 2), cells_per_block=(2, 2), visualize=True)
+fd, hog_image = hog(image_gray, orientations=9, pixels_per_cell=(3, 3), transform_sqrt=True,cells_per_block=(2, 2), visualize=True)
 
 visuHOG(image,hog_image) 
 
 # Compute HOG descriptors with Norme L2
-fd, hog_image = hog(image_gray, orientations=9, pixels_per_cell=(8, 8), cells_per_block=(2, 2), visualize=True, block_norm='L2')
-
-
+fd, hog_image = hog(image_gray, orientations=9, pixels_per_cell=(8, 8),transform_sqrt=True, cells_per_block=(2, 2), visualize=True, block_norm='L2')
 # Display the HOG image
-visuHOG(image,hog_image)  """
+visuHOG(image,hog_image) 
 
 
 
@@ -94,18 +84,12 @@ image_paths = [
 for image_path in image_paths:
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     fd, hog_image = hog(image, orientations=9, pixels_per_cell=(8, 8), cells_per_block=(2, 2), visualize=True, block_norm='L2')
-
-    # Predict using SVMc
     prediction = classifier.predict([fd])
-
-     # Annotate the image with the prediction
     label = f"Prediction: {prediction[0]}" 
-
-    # Display image and prediction
     cv2.imshow(f"Image: {image_path}", image)
     print(f"Prediction for {image_path}: {prediction, label}")
 
 cv2.waitKey(0)
-cv2.destroyAllWindows()
+cv2.destroyAllWindows() 
 
  

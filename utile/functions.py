@@ -16,8 +16,6 @@ def maxnormgrad(magnitudes,angles):
     #max_norm carte qui donne pour chaque point le canal couleur pour lequel la norme magnitudes 
     #est maximale 
     max_norm = np.argmax(magnitudes, axis=2)
-
-    # Pour chaque pixel, stocker le gradient de norme maximale par rapport aux 3 canaux couleurs
     m, n = np.shape(max_norm)
     I, J = np.ogrid[:m, :n]
     A = angles[I, J, max_norm]
