@@ -3,21 +3,23 @@
 This repository contains the implementation and evaluation of object detection using Histogram of Oriented Gradients (HOG) features and Support Vector Machine (SVM) classification. 
 
 ## Project Structure
-├── data # Directory containing the dataset
-├── model # Trained models and related utilities
-│ └── classHOG.p # Pre-trained model
-├── pickle # Serialized objects
-├── utile # Utility functions and scripts
-│ ├── init.py # Initialization file
-│ ├── functions.py # Utility functions
-│ └── visuHOG.py # Visualization utilities for HOG
-├── .gitignore 
-├── HOG_ATELIER1.py # SVM trainning and results 
-├── README.md 
-├── main.py # Main script to run the project
-└── requirements.txt # List of dependencies
 
-
+```plaintext
+.
+├── data                 # Directory containing the dataset
+├── model                
+│   └── classHOG.p       # Pre-trained model
+├── pickle              
+├── utile                # Utility functions and scripts
+│   ├── __init__.py     
+│   ├── functions.py     # Utility functions
+│   └── visuHOG.py       # Visualization for HOG
+├── .gitignore
+├── HOG_ATELIER1.py      # SVM training and results
+├── README.md
+├── main.py              # Main script to run the project
+└── requirements.txt     # List of dependencies
+```
 ## Dataset
 
 The dataset used for this project is the INRIA Person Dataset. It is a popular dataset used for the task of person detection.
@@ -34,15 +36,12 @@ For those interested in diving deeper into the topic, the following paper provid
 ## Setup and Installation
 
 1. Clone this repository:
-git clone [https://github.com/fouedayedi/HogTracking.git]
 
 2. Install the required dependencies:
-pip install -r requirements.txt
 
+3. Download and extract the INRIA dataset.
 
-4. Download and extract the INRIA dataset.
-
-5. Run the main script:
+4. Run the main script:
 python main.py
 
 
